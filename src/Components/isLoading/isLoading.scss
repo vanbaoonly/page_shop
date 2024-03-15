@@ -1,0 +1,33 @@
+.isLoading {
+    position: fixed;
+    inset: 0;
+    background-color: rgba($color: #999, $alpha: 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .load {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .load_spin {
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-color: rgba($color: #999, $alpha: 0.2);
+            border: 10px solid blue;
+            border-top: 10px solid rgba($color: #999, $alpha: 0.2);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #999;
+            animation: Spin infinite 0.5s linear;
+        }
+    }
+}
+@keyframes Spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

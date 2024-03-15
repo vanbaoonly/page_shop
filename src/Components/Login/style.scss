@@ -1,0 +1,75 @@
+.login,
+.forgotpass {
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    padding: 10px;
+}
+.form,
+.form-send-gmail {
+    min-width: 450px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: 10px solid #8deeee;
+    box-shadow: 0px 2px 10px black;
+
+    h1 {
+        text-align: center;
+    }
+    .form-group {
+        position: relative;
+        .icons {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+        }
+    }
+    label {
+        margin-left: 10px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+    button,
+    input {
+        height: 40px;
+        width: 100%;
+        padding: 5px 10px;
+        border: 1px solid #8deeee;
+        border-radius: 10px;
+        outline-color: #00ffff;
+    }
+    .form-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15px;
+        .left {
+            display: flex;
+            gap: 20px;
+            span {
+                cursor: pointer;
+            }
+        }
+        .right {
+            display: flex;
+            align-self: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            svg {
+                font-size: 20px;
+            }
+        }
+    }
+}
