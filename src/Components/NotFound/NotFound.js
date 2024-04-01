@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import IsLoading from '../isLoading/isLoading';
+import { ROUTERS } from '../../Router/router';
 
 function NotFound(props) {
     let Navigate = useNavigate();
     const ToHome = () => {
         let key_login = localStorage.getItem("status_login");
-        let test = JSON.parse(key_login)
-        if (test.length > 0) {
-            if (test[1] === "user") {
-                Navigate("/user");
-            } else {
-                Navigate("/admin/dashboard");
-            }
+        let test = key_login ? JSON.parse(key_login) : false;
+        if (!test) {
+            Navigate(ROUTERS.ACTIONS.LOGIN);
+
         }
         else {
-            Navigate("/login");
+
+            if (test[1] === "user") {
+                Navigate(ROUTERS.USER.HOME);
+            } else {
+                Navigate(ROUTERS.ADMIN.HOME);
+            }
         }
     }
     const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +34,7 @@ function NotFound(props) {
             {isLoading ?
                 <IsLoading /> :
                 <button onClick={() => ToHome()}>
-                    to Home Page
+                    To Home Page
                 </button>}
         </div>
     );

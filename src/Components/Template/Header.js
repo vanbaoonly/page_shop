@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "./style.scss"
 import { NavLink } from 'react-router-dom';
 import Logo from "../../Assets/logo/logo192.png";
-
-
+import Logout from "../../Components/Logout/Logout"
+import { Data } from '../../App';
 function Header(props) {
+
+    const { data } = useContext(Data);
     return (
         <div className='container'>
             <header >
                 <img className="logo" src={Logo} alt='logo' />
                 <nav>
                     <NavLink
-                        to="/user/home"
+                        to="/page_shop/user/home"
                         className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : ""}>Home</NavLink>
                     <NavLink
-                        to="/user/product"
+                        to="/page_shop/user/product"
                         className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : ""}>Product</NavLink>
-                    <NavLink
-                        to="/login"
-                        className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : ""}>login</NavLink>
+                    <span> {data.name}  <Logout /></span>
                 </nav>
             </header>
         </div>

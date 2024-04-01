@@ -9,16 +9,17 @@ import IsLoading from '../../../Components/isLoading/isLoading';
 import { Data } from '../../../App';
 
 const LayoutUser = (props) => {
-    const { data } = useContext(Data);
     const [isLoading, setIsLoading] = useState(false);
+    const { data } = useContext(Data);
+
     useEffect(() => {
-        console.log("data user", data)
+        // console.log("data user", data)
         setIsLoading(true);
         const timeout = setTimeout(() => {
             setIsLoading(false);
         }, 1000);
         return () => clearTimeout(timeout);
-    }, [data]);
+    }, []);
 
     return (
         <>
@@ -26,15 +27,15 @@ const LayoutUser = (props) => {
                 <IsLoading />
                 :
                 <div className='LayoutUser'>
-                    {/* <ChangeTitle Title="User" /> */}
+                    <ChangeTitle Title={"User"} />
                     <div>
                         <Header />
-                        <div className='content'>
+                        <div className='container'>
                             <Outlet />
-                            <h3>  {data}</h3>
+                            <h3>  {data.gmail}</h3>
                         </div>
                         <Footer />
-                        <Logout />
+
                     </div>
                 </div>
             }

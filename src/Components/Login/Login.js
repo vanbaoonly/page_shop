@@ -1,11 +1,12 @@
 import "./style.scss"
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { MdLanguage } from "react-icons/md";
 import axios from "axios";
 import ChangeTitle from "../ChangeTitle/ChangeTitle";
 import IsLoading from "../isLoading/isLoading";
+import { ROUTERS } from "../../Router/router";
 
 const Login = (props) => {
     let Navigate = useNavigate();
@@ -23,24 +24,24 @@ const Login = (props) => {
                 type: "admin",
                 name: "a",
                 password: "1",
-                gmail: "aaa@gmail.com",
+                gmail: "admin@gmail.com",
                 address: "HCM",
                 phone: "0123456789",
 
             }, {
                 type: "user",
-                name: "us",
+                name: "u1",
                 password: "2",
-                gmail: "aaa@gmail.com",
+                gmail: "user1@gmail.com",
                 address: "HCM",
                 phone: "0123456789",
 
             },
             {
-                type: "admin",
-                name: "ab",
+                type: "user",
+                name: "u2",
                 password: "2",
-                gmail: "aaa@gmail.com",
+                gmail: "user2@gmail.com",
                 address: "HCM",
                 phone: "0123456789",
 
@@ -50,17 +51,20 @@ const Login = (props) => {
         e.preventDefault();
         try {
             if (name.length > 0 && password.length > 0) {
-                let find_ac = account.find((ac) => ac.name === name && ac.password === password);
+                let find_ac = account.find((ac) => ac.name.toLowerCase() === name.toLowerCase() && ac.password.toLowerCase() === password.toLowerCase());
                 if (find_ac) {
                     if (find_ac.type === "admin") {
-                        Navigate("/admin/dashboard")
+                        Navigate("/page-shop/admin/dashboard")
                         localStorage.setItem("status_login", JSON.stringify([true, find_ac.type]));
 
                     } else {
-                        Navigate("/user")
+                        Navigate("/page-shop/user")
+
+
                         localStorage.setItem("status_login", JSON.stringify([true, find_ac.type]));
                     }
-                    props.setdata(data);
+                    // props.setdata(find_ac);
+                    localStorage.setItem("data", JSON.stringify(find_ac))
 
                 } else {
                     localStorage.setItem("status_login", JSON.stringify(false));
@@ -131,14 +135,11 @@ const Login = (props) => {
                                 </div>
                             </div>
                             <button type="submit">login</button>
-
-                            {/* <button onClick={() => Login()}>login</button> */}
-                            {/* <Logout /> */}
                             <div className="form-bottom">
                                 <div className="left">
-                                    <span onClick={() => Navigate("/register")}>Register</span>
+                                    <span onClick={() => Navigate(ROUTERS.ACTIONS.REGISTER)}>Register</span>
                                     |
-                                    <span onClick={() => Navigate("/forgotpass")}>Forgot password</span>
+                                    <span onClick={() => Navigate(ROUTERS.ACTIONS.FORGOTPASSWPRD)}>Forgot password</span>
                                 </div>
                                 <div className="right">
                                     <MdLanguage />  <span>English</span>

@@ -6,6 +6,7 @@ import { MdLanguage } from "react-icons/md";
 import axios from "axios";
 import ChangeTitle from "../ChangeTitle/ChangeTitle";
 import IsLoading from "../isLoading/isLoading";
+import { ROUTERS } from "../../Router/router";
 
 const Register = (props) => {
     let Navigate = useNavigate();
@@ -47,7 +48,7 @@ const Register = (props) => {
         <>
             {
                 isLoading ? <IsLoading /> :
-                    <div className='login '>
+                    <div className='register '>
                         {/* <ChangeTitle Title="Register" /> */}
                         <div className="form">
                             <h1>Register</h1>
@@ -69,9 +70,9 @@ const Register = (props) => {
                             {/* <Logout /> */}
                             <div className="form-bottom">
                                 <div className="left">
-                                    <span onClick={() => Navigate("/login")}>Log in</span>
+                                    <span onClick={() => Navigate(ROUTERS.ACTIONS.LOGIN)}>Log in</span>
                                     |
-                                    <span onClick={() => Navigate("/forgotpass")}>Forgot password</span>
+                                    <span onClick={() => Navigate(ROUTERS.ACTIONS.FORGOTPASSWPRD)}>Forgot password</span>
                                 </div>
                                 <div className="right">
                                     <MdLanguage />  <span>English</span>

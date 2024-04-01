@@ -11,13 +11,13 @@ const LayoutAdmin = (props) => {
     const { data } = useContext(Data);
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
-        console.log("data admin", data)
+        // console.log("data admin", data)
         setIsLoading(true);
         const timeout = setTimeout(() => {
             setIsLoading(false);
         }, 1000);
         return () => clearTimeout(timeout);
-    }, [data]);
+    }, []);
 
     return (
         <>
@@ -29,21 +29,21 @@ const LayoutAdmin = (props) => {
                     <div className='container'>
                         <nav>
                             <NavLink
-                                to="/admin/dashboard"
+                                to="/page_shop/admin/dashboard"
                                 className={({ isActive }) => isActive ? "active" : ""}>Home admin</NavLink>
                             <NavLink
-                                to="/admin/dashboard/products"
+                                to="/page_shop/admin/dashboard/products"
                                 className={({ isActive }) => isActive ? "active" : ""}>Product</NavLink>
                             <NavLink
-                                to="/login"
-                                className={({ isActive }) => isActive ? "active" : ""}>login</NavLink>
+                                to="#"
+                                className={({ isActive }) => isActive ? "active" : ""}> {data.name} <Logout /></NavLink>
                         </nav>
                     </div>
                     <div className='container'>
                         <Outlet />
-                        <h3>  {data}</h3>
+                        <h3>  {data.gmail}</h3>
                     </div>
-                    <Logout />
+
                     <Footer />
                 </div>
             }

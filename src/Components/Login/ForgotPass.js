@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { MdLanguage } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import IsLoading from '../isLoading/isLoading';
+import { ROUTERS } from '../../Router/router';
 
 const ForgotPass = () => {
     let Navigate = useNavigate();
@@ -43,7 +44,7 @@ const ForgotPass = () => {
                             <button onClick={() => SetPass()}>Send</button>
                             <div className="form-bottom">
                                 <div className="left">
-                                    <span onClick={() => Navigate("/login")}>login</span>
+                                    <span onClick={() => Navigate(ROUTERS.ACTIONS.LOGIN)}>login</span>
 
                                 </div>
                                 <div className="right">

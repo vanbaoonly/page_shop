@@ -1,4 +1,4 @@
-import { Route, Routes, json, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 import LayoutUser from "./Pages/user/LayoutUser/LayoutUser";
 import Login from "./Components/Login/Login";
 import Page1 from "./Pages/user/Page1/Page1";
@@ -9,36 +9,39 @@ import Register from "./Components/Login/Register";
 import ForgotPass from "./Components/Login/ForgotPass";
 import Home from "./Pages/user/Home/Home";
 import { createContext, useEffect, useState } from "react";
+import { ROUTERS } from "./Router/router";
 
 export const Data = createContext();
 
 function App() {
-  const [data, setdata] = useState([]);
+
+  let Nav = useNavigate();
+  const sttdata = localStorage.getItem("data");
+  const data = sttdata ? JSON.parse(sttdata) : {};
   const status = localStorage.getItem("status_login");
   const isLogin = status ? JSON.parse(status) : false;
 
-  let Navigate = useNavigate();
   useEffect(() => {
     if (!isLogin) {
-      Navigate("/login")
+      Nav(ROUTERS.ACTIONS.LOGIN)
     } else {
       return;
     }
-  }, [isLogin, data]);
+  }, [isLogin]);
 
   return (
-    <Data.Provider value={data}>
+    <Data.Provider value={{ data }}>
       <Routes>
-        <Route path="/login" element={<Login setdata={setdata} />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgotpass" element={<ForgotPass />} />
-        <Route path="/user" element={<LayoutUser />}>
+        <Route path={ROUTERS.ACTIONS.LOGIN} element={<Login />} />
+        <Route path={ROUTERS.ACTIONS.REGISTER} element={<Register />} />
+        <Route path={ROUTERS.ACTIONS.FORGOTPASSWPRD} element={<ForgotPass />} />
+        <Route path={ROUTERS.USER.HOME} element={!isLogin ? <Navigate to={ROUTERS.ACTIONS.FORGOTPASSWPRD} /> : <LayoutUser />}>
           <Route path="home" element={<Home />} />
           <Route path="product" element={<Page1 />} />
           <Route path="product/:id" element={<Page1 />} />
         </Route>
 
-        <Route path="/admin/dashboard" element={<LayoutAdmin />} >
+        <Route path={ROUTERS.ADMIN.HOME} element={!isLogin ? <Navigate to={ROUTERS.ACTIONS.LOGIN} /> : <LayoutAdmin />} >
           <Route path="products" element={<Products />} />
           <Route path="products/:id" element={<Page1 />} />
         </Route>

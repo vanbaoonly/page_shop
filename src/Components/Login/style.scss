@@ -1,4 +1,5 @@
 .login,
+.register,
 .forgotpass {
     border-radius: 10px;
     background-color: #fff;
@@ -11,7 +12,7 @@
 }
 .form,
 .form-send-gmail {
-    min-width: 450px;
+    min-width: 300px;
     width: 500px;
     display: flex;
     flex-direction: column;

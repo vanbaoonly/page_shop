@@ -7,13 +7,13 @@ function Page1(props) {
     console.log("pa", id)
     const [isLoading, setIsLoading] = useState(false);
 
-    // useEffect(() => {
-    //     setIsLoading(true);
-    //     const timeout = setTimeout(() => {
-    //         setIsLoading(false);
-    //     }, 1000);
-    //     return () => clearTimeout(timeout);
-    // }, []);
+    useEffect(() => {
+        setIsLoading(true);
+        const timeout = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+        return () => clearTimeout(timeout);
+    }, []);
 
     return (
         <>
