@@ -1,3 +1,6 @@
+@use "sass:map";
+@import "/src/Styles/variables";
+
 .login,
 .register,
 .forgotpass {
@@ -50,6 +53,14 @@
         border-radius: 10px;
         outline-color: #00ffff;
     }
+    button {
+        background-image: linear-gradient(
+            map.get($colors, "main"),
+            map.get($colors, "white"),
+            map.get($colors, "main")
+        );
+    }
+
     .form-bottom {
         display: flex;
         justify-content: space-between;

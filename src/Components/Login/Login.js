@@ -54,11 +54,11 @@ const Login = (props) => {
                 let find_ac = account.find((ac) => ac.name.toLowerCase() === name.toLowerCase() && ac.password.toLowerCase() === password.toLowerCase());
                 if (find_ac) {
                     if (find_ac.type === "admin") {
-                        Navigate("/page-shop/admin/dashboard")
+                        Navigate("/page_shop/admin/dashboard")
                         localStorage.setItem("status_login", JSON.stringify([true, find_ac.type]));
 
                     } else {
-                        Navigate("/page-shop/user")
+                        Navigate("/page_shop/user")
 
 
                         localStorage.setItem("status_login", JSON.stringify([true, find_ac.type]));
@@ -134,7 +134,7 @@ const Login = (props) => {
                                     }
                                 </div>
                             </div>
-                            <button type="submit">login</button>
+                            <button className="btn_submit" type="submit">login</button>
                             <div className="form-bottom">
                                 <div className="left">
                                     <span onClick={() => Navigate(ROUTERS.ACTIONS.REGISTER)}>Register</span>

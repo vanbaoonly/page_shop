@@ -9,7 +9,7 @@ function Logout(props) {
     }
     return (
         <div className='logout' style={{ display: "inline-block" }}>
-            <button onClick={() => Logoutt()}>log out</button>
+            <span onClick={() => Logoutt()}>log out</span>
         </div>
     );
 }

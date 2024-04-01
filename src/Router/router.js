@@ -1,12 +1,11 @@
 export const ROUTERS = {
 
     USER: {
-        HOME: 'page_shop/user',
-        PRODUCT: 'page_shop/user/product',
+        HOME: '/page_shop/user',
+        PRODUCT: '/page_shop/user/product',
     },
     ADMIN: {
-        HOME: 'page_shop/admin/dashboard',
-
+        HOME: '/page_shop/admin/dashboard',
     },
     ACTIONS: {
         LOGIN: "/page_shop/login",

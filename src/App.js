@@ -8,6 +8,9 @@ import LayoutAdmin from "./Pages/admin/LayoutAdmin/LayoutAdmin";
 import Register from "./Components/Login/Register";
 import ForgotPass from "./Components/Login/ForgotPass";
 import Home from "./Pages/user/Home/Home";
+import About from "./Pages/user/About/About";
+import Contact from "./Pages/user/Contact/Contact";
+
 import { createContext, useEffect, useState } from "react";
 import { ROUTERS } from "./Router/router";
 
@@ -37,6 +40,8 @@ function App() {
         <Route path={ROUTERS.ACTIONS.FORGOTPASSWPRD} element={<ForgotPass />} />
         <Route path={ROUTERS.USER.HOME} element={!isLogin ? <Navigate to={ROUTERS.ACTIONS.FORGOTPASSWPRD} /> : <LayoutUser />}>
           <Route path="home" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="product" element={<Page1 />} />
           <Route path="product/:id" element={<Page1 />} />
         </Route>

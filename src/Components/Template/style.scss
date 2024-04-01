@@ -1,21 +1,159 @@
+@use "sass:map";
+@import "/src/Styles/variables";
 // Headder
+
 header {
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    .logo {
-        width: 50px;
-        height: 50px;
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 10px;
+        .header_left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+            span {
+                font-size: 25px;
+                font-weight: bold;
+            }
+        }
+        .header_center {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            li {
+                position: relative;
+                list-style: none;
+                a {
+                    padding: 5px 0;
+                    text-decoration: none;
+                    color: map.get($colors, "drak");
+                    &.active {
+                        color: map.get($colors, "main");
+                        &::before {
+                            display: block;
+                            content: "";
+                            position: absolute;
+                            bottom: -2px;
+                            left: 0;
+                            background-color: map.get($colors, "main");
+                            height: 2px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+        .header_right {
+            border: 2px solid map.get($colors, "main");
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+            .setting_mode {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5px 10px;
+                gap: 10px;
+                background-image: linear-gradient(
+                    map.get($colors, "main"),
+                    map.get($colors, "white"),
+                    map.get($colors, "main")
+                );
+
+                span {
+                    font-size: 16px;
+                }
+            }
+            ul {
+                position: absolute;
+                top: 110%;
+                right: 0;
+                left: 0;
+                box-shadow: 0px 0px 5px #555;
+                li {
+                    padding: 10px 0;
+                    list-style: none;
+                    text-align: center;
+                    background-image: linear-gradient(
+                        map.get($colors, "main"),
+                        map.get($colors, "white"),
+                        map.get($colors, "main")
+                    );
+                    font-size: 16px;
+                    border: 1px solid map.get($colors, "main");
+                    &:hover {
+                        background-image: linear-gradient(
+                            map.get($colors, "white"),
+                            map.get($colors, "main"),
+                            map.get($colors, "white")
+                        );
+                    }
+                }
+            }
+        }
+        .menu {
+            display: none;
+        }
     }
-    nav a {
-        text-decoration: none;
-        &.active {
-            color: red;
+    /* Medium Devices, Desktops */
+    @media (max-width: 992px) {
+    }
+    /* Small Devices, Tablets */
+    @media (max-width: 768px) {
+        .header {
+            .header_left {
+                width: 100%;
+                .logo {
+                    width: 24px;
+                    height: 24px;
+                }
+                span {
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+            }
+            .header_center {
+                display: none;
+            }
+            .menu {
+                display: block;
+                padding: 5px;
+
+                background-color: yellow;
+                margin-right: 10px;
+                border: 2px solid map.get($colors, "main");
+                background-image: linear-gradient(
+                    map.get($colors, "white"),
+                    map.get($colors, "main"),
+                    map.get($colors, "white")
+                );
+            }
+            .header_right {
+                .setting_mode {
+                    span {
+                        display: none;
+                    }
+                }
+                ul {
+                    left: -403% !important;
+                    li {
+                        width: 200px;
+                    }
+                }
+            }
         }
-        &.pending {
-            background-color: blue;
-        }
+    }
+    /* Extra Small Devices, Phones */
+    @media (max-width: 480px) {
+    }
+    @media (max-width: 320px) {
     }
 }
 // end Header
