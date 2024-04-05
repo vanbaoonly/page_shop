@@ -1,6 +1,6 @@
 import "./style.scss"
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { MdLanguage } from "react-icons/md";
 import axios from "axios";
@@ -47,6 +47,12 @@ const Login = (props) => {
 
             }
         ]
+
+    // tạo key người dùng 
+    function getUserKey(user_key) {
+        return user_key + (Math.floor(Math.random() * 99999) + 100000);
+    }
+
     const handelLogin = async (e) => {
         e.preventDefault();
         try {
@@ -54,17 +60,16 @@ const Login = (props) => {
                 let find_ac = account.find((ac) => ac.name.toLowerCase() === name.toLowerCase() && ac.password.toLowerCase() === password.toLowerCase());
                 if (find_ac) {
                     if (find_ac.type === "admin") {
-                        Navigate("/page_shop/admin/dashboard")
+                        Navigate("/admin/dashboard")
                         localStorage.setItem("status_login", JSON.stringify([true, find_ac.type]));
 
                     } else {
-                        Navigate("/page_shop/user")
-
-
+                        Navigate("/")
                         localStorage.setItem("status_login", JSON.stringify([true, find_ac.type]));
                     }
                     // props.setdata(find_ac);
                     localStorage.setItem("data", JSON.stringify(find_ac))
+
 
                 } else {
                     localStorage.setItem("status_login", JSON.stringify(false));
@@ -94,11 +99,22 @@ const Login = (props) => {
             alert(er)
         }
     }
+
+    const status_login = localStorage.getItem("status_login");
+    const Check_login = status_login ? JSON.parse(status_login) : false;
     useEffect(() => {
         setIsLoading(true);
         const timeout = setTimeout(() => {
             setIsLoading(false);
-        }, 1000);
+        }, 500);
+        if (Check_login) {
+            if (Check_login[1] === "admin") {
+                console.log("check", Check_login[1])
+                Navigate('/admin/dashboard')
+            } else {
+                Navigate('/')
+            }
+        }
         return () => clearTimeout(timeout);
     }, []);
     return (
@@ -117,6 +133,7 @@ const Login = (props) => {
                                     name="acount"
                                     onChange={(e) => setName(e.target.value)}
                                     placeholder="Enter Acount.."
+                                    autoFocus={true}
                                     autoComplete="acount" />
                             </div>
                             <div className="form-group">

@@ -9,11 +9,10 @@ function NotFound(props) {
         let key_login = localStorage.getItem("status_login");
         let test = key_login ? JSON.parse(key_login) : false;
         if (!test) {
-            Navigate(ROUTERS.ACTIONS.LOGIN);
+            // Navigate(ROUTERS.ACTIONS.LOGIN);
+            Navigate(ROUTERS.USER.HOME);
 
-        }
-        else {
-
+        } else {
             if (test[1] === "user") {
                 Navigate(ROUTERS.USER.HOME);
             } else {

@@ -9,16 +9,52 @@
 }
 body {
   font-family: "Saira", sans-serif;
+  background-color: map.get($colors, "bg-body");
 }
-.logo {
-  animation: spin infinite 10s linear;
-}
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .col-1 {
+    flex: 0 0 8.32%;
+    max-width: 8.32%;
   }
-  to {
-    transform: rotate(360deg);
+  .col-2 {
+    flex: 0 0 calc((2 / 12) * 100);
+    max-width: calc((2 / 12) * 100);
+  }
+  .col-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-4 {
+    flex: 0 0 calc(100% / 3);
+    max-width: calc(100% / 3);
+  }
+  .col-5 {
+    flex: 0 0 calc((5 / 12) * 100);
+    max-width: calc((5 / 12) * 100);
+  }
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-7 {
+    flex: 0 0 calc((7 / 12) * 100);
+    max-width: calc((7 / 12) * 100);
+  }
+  .col-8 {
+    flex: 0 0 calc((8 / 12) * 100);
+    max-width: calc((8 / 12) * 100);
+  }
+  .col-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 
@@ -33,22 +69,166 @@ body {
 @media (max-width: 992px) {
   .container {
     max-width: 100%;
+    background-color: yellow;
+  }
+  .row {
+    .col-lg-1 {
+      flex: 0 0 8.32%;
+      max-width: 8.32%;
+    }
+    .col-lg-2 {
+      flex: 0 0 16.66%;
+      max-width: 16.66%;
+    }
+    .col-lg-3 {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+    .col-lg-4 {
+      flex: 0 0 calc(100% / 3);
+      max-width: calc(100% / 3);
+    }
+    .col-lg-5 {
+      flex: 0 0 calc((5 / 12) * 100);
+      max-width: calc((5 / 12) * 100);
+    }
+    .col-lg-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+    .col-lg-7 {
+      flex: 0 0 calc((7 / 12) * 100);
+      max-width: calc((7 / 12) * 100);
+    }
+    .col-lg-8 {
+      flex: 0 0 66.66%;
+      max-width: 66.66%;
+    }
+    .col-lg-9 {
+      flex: 0 0 75%;
+      max-width: 75%;
+    }
+    .col-lg-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
   }
 }
+
 /* Small Devices, Tablets */
 @media (max-width: 768px) {
   .container {
     max-width: 100%;
   }
+  .row {
+    .col-md-1 {
+      flex: 0 0 8.32%;
+      max-width: 8.32%;
+    }
+    .col-md-2 {
+      flex: 0 0 16.65%;
+      max-width: 16.65%;
+    }
+    .col-md-3 {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+    .col-md-4 {
+      flex: 0 0 calc(100% / 3);
+      max-width: calc(100% / 3);
+    }
+    .col-md-5 {
+      flex: 0 0 41.66%;
+      max-width: 41.66%;
+    }
+    .col-md-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+    .col-md-7 {
+      flex: 0 0 calc((7 / 12) * 100);
+      max-width: calc((7 / 12) * 100);
+    }
+    .col-md-8 {
+      flex: 0 0 calc((8 / 12) * 100);
+      max-width: calc((8 / 12) * 100);
+    }
+    .col-md-9 {
+      flex: 0 0 75%;
+      max-width: 75%;
+    }
+    .col-md-10 {
+      flex: 0 0 83.32%;
+      max-width: 83.32%;
+    }
+    .col-md-10 {
+      flex: 0 0 91.66;
+      max-width: 91.66;
+    }
+    .col-md-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
 }
 /* Extra Small Devices, Phones */
+@media (max-width: 576px) {
+  .container {
+    background-color: aqua;
+    max-width: 100%;
+  }
+  .row {
+    .col-sm-1 {
+      flex: 0 0 8.32%;
+      max-width: 8.32%;
+    }
+    .col-sm-2 {
+      flex: 0 0 calc((2 / 12) * 100);
+      max-width: calc((2 / 12) * 100);
+    }
+    .col-sm-3 {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+    .col-sm-4 {
+      flex: 0 0 calc(100% / 3);
+      max-width: calc(100% / 3);
+    }
+    .col-sm-5 {
+      flex: 0 0 calc((5 / 12) * 100);
+      max-width: calc((5 / 12) * 100);
+    }
+    .col-sm-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+    .col-sm-7 {
+      flex: 0 0 calc((7 / 12) * 100);
+      max-width: calc((7 / 12) * 100);
+    }
+    .col-sm-8 {
+      flex: 0 0 calc((8 / 12) * 100);
+      max-width: calc((8 / 12) * 100);
+    }
+    .col-sm-9 {
+      flex: 0 0 75%;
+      max-width: 75%;
+    }
+    .col-sm-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
+
 @media (max-width: 480px) {
   .container {
     max-width: 100%;
   }
-}
-@media (max-width: 320px) {
-  .container {
-    max-width: 100%;
+  .row {
+    .col-xs-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
   }
 }

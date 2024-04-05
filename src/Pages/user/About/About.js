@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import IsLoading from '../../../Components/isLoading/isLoading';
 
 const About = () => {
-    return (
-        <div>
-            about
 
-        </div>
+    return (
+        <>
+
+            <div>
+                about
+            </div>
+
+        </>
     );
 };
 

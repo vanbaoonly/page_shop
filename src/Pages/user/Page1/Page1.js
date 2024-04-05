@@ -11,7 +11,7 @@ function Page1(props) {
         setIsLoading(true);
         const timeout = setTimeout(() => {
             setIsLoading(false);
-        }, 1000);
+        }, 500);
         return () => clearTimeout(timeout);
     }, []);
 

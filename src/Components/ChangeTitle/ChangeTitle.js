@@ -4,10 +4,10 @@ const ChangeTitle = ({ Title }) => {
     return (
         <div>
             <Helmet>
-                <title>{Title}</title>
+                <title>Shop</title>
             </Helmet>
         </div>
     );
-};
+}
 
 export default ChangeTitle;
