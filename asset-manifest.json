@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/page_shop/static/css/main.de90c50f.css",
-    "main.js": "/page_shop/static/js/main.34fb956e.js",
+    "main.css": "/page_shop/static/css/main.cc49bd65.css",
+    "main.js": "/page_shop/static/js/main.ef9e827c.js",
+    "static/media/logo_fu.png": "/page_shop/static/media/logo_fu.fd160ff192b2fc9422ec.png",
+    "static/media/logo_ic.png": "/page_shop/static/media/logo_ic.01338f58ace1b0e87b99.png",
     "index.html": "/page_shop/index.html",
-    "main.de90c50f.css.map": "/page_shop/static/css/main.de90c50f.css.map",
-    "main.34fb956e.js.map": "/page_shop/static/js/main.34fb956e.js.map"
+    "main.cc49bd65.css.map": "/page_shop/static/css/main.cc49bd65.css.map",
+    "main.ef9e827c.js.map": "/page_shop/static/js/main.ef9e827c.js.map"
   },
   "entrypoints": [
-    "static/css/main.de90c50f.css",
-    "static/js/main.34fb956e.js"
+    "static/css/main.cc49bd65.css",
+    "static/js/main.ef9e827c.js"
   ]
 }
