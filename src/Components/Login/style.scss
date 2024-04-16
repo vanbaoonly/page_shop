@@ -54,11 +54,7 @@
         outline-color: #00ffff;
     }
     button {
-        background-image: linear-gradient(
-            map.get($colors, "main"),
-            map.get($colors, "white"),
-            map.get($colors, "main")
-        );
+        background-image: map.get($colors, "main");
     }
 
     .form-bottom {

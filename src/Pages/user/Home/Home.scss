@@ -1,0 +1,69 @@
+@use "sass:map";
+@import "/src/Styles/variables.scss";
+.home {
+    /* styles.css */
+    .featured-products {
+        margin: 20px 0;
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .product-item {
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .product-item img {
+            height: 150px;
+            width: 100%;
+            border-radius: 5px;
+        }
+        .product-item h3 {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .product-item p {
+            font-size: 14px;
+            color: #888;
+        }
+    }
+
+    .noibat {
+        .slide {
+            img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    }
+    @media (max-width: 992px) {
+        // .home_top {
+        //     padding: 0 10px;
+        // }
+    }
+    @media (max-width: 768px) {
+        .home_top {
+            .menu {
+                display: none;
+            }
+            .from_search {
+                justify-content: center;
+                .input {
+                    width: 70%;
+                    margin-right: 5px;
+                    input {
+                        padding: 10px;
+                        font-size: 16px;
+                    }
+                }
+
+                button {
+                    font-size: 16px;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}

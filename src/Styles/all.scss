@@ -1,6 +1,7 @@
 @use "sass:map";
 @import "/src/Styles/variables.scss";
-// Headder
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 
 * {
   margin: 0;
@@ -10,6 +11,7 @@
 body {
   font-family: "Saira", sans-serif;
   background-color: map.get($colors, "bg-body");
+  overflow-x: hidden;
 }
 
 .row {
@@ -21,8 +23,8 @@ body {
     max-width: 8.32%;
   }
   .col-2 {
-    flex: 0 0 calc((2 / 12) * 100);
-    max-width: calc((2 / 12) * 100);
+    flex: 0 0 16.66%;
+    max-width: 16.66%;
   }
   .col-3 {
     flex: 0 0 25%;
@@ -33,20 +35,20 @@ body {
     max-width: calc(100% / 3);
   }
   .col-5 {
-    flex: 0 0 calc((5 / 12) * 100);
-    max-width: calc((5 / 12) * 100);
+    flex: 0 0 41.66%;
+    max-width: 41.66%;
   }
   .col-6 {
     flex: 0 0 50%;
     max-width: 50%;
   }
   .col-7 {
-    flex: 0 0 calc((7 / 12) * 100);
-    max-width: calc((7 / 12) * 100);
+    flex: 0 0 58.32;
+    max-width: 58.32;
   }
   .col-8 {
-    flex: 0 0 calc((8 / 12) * 100);
-    max-width: calc((8 / 12) * 100);
+    flex: 0 0 66.66%;
+    max-width: 66.66%;
   }
   .col-9 {
     flex: 0 0 75%;
@@ -62,14 +64,13 @@ body {
   max-width: 1024px;
   width: 100%;
   margin: 0 auto;
-  background-color: map.get($colors, "white");
 }
 
 /* Medium Devices, Desktops */
 @media (max-width: 992px) {
   .container {
     max-width: 100%;
-    background-color: yellow;
+    box-shadow: none;
   }
   .row {
     .col-lg-1 {
@@ -89,16 +90,16 @@ body {
       max-width: calc(100% / 3);
     }
     .col-lg-5 {
-      flex: 0 0 calc((5 / 12) * 100);
-      max-width: calc((5 / 12) * 100);
+      flex: 0 0 41.66%;
+      max-width: 41.66%;
     }
     .col-lg-6 {
       flex: 0 0 50%;
       max-width: 50%;
     }
     .col-lg-7 {
-      flex: 0 0 calc((7 / 12) * 100);
-      max-width: calc((7 / 12) * 100);
+      flex: 0 0 58.32;
+      max-width: 58.32%;
     }
     .col-lg-8 {
       flex: 0 0 66.66%;
@@ -146,12 +147,12 @@ body {
       max-width: 50%;
     }
     .col-md-7 {
-      flex: 0 0 calc((7 / 12) * 100);
-      max-width: calc((7 / 12) * 100);
+      max-width: 58.32;
+      max-width: 58.32%;
     }
     .col-md-8 {
-      flex: 0 0 calc((8 / 12) * 100);
-      max-width: calc((8 / 12) * 100);
+      flex: 0 0 66.66%;
+      max-width: 66.66%;
     }
     .col-md-9 {
       flex: 0 0 75%;
@@ -174,46 +175,28 @@ body {
 /* Extra Small Devices, Phones */
 @media (max-width: 576px) {
   .container {
-    background-color: aqua;
     max-width: 100%;
   }
   .row {
-    .col-sm-1 {
-      flex: 0 0 8.32%;
-      max-width: 8.32%;
-    }
     .col-sm-2 {
-      flex: 0 0 calc((2 / 12) * 100);
-      max-width: calc((2 / 12) * 100);
+      flex: 0 0 16.66%;
+      max-width: 16.66%;
     }
+
     .col-sm-3 {
-      flex: 0 0 25%;
-      max-width: 25%;
-    }
-    .col-sm-4 {
-      flex: 0 0 calc(100% / 3);
-      max-width: calc(100% / 3);
-    }
-    .col-sm-5 {
-      flex: 0 0 calc((5 / 12) * 100);
-      max-width: calc((5 / 12) * 100);
+      flex: 0 0 calc(100% / 4);
+      max-width: calc(100% / 4);
     }
     .col-sm-6 {
       flex: 0 0 50%;
       max-width: 50%;
     }
-    .col-sm-7 {
-      flex: 0 0 calc((7 / 12) * 100);
-      max-width: calc((7 / 12) * 100);
-    }
+
     .col-sm-8 {
-      flex: 0 0 calc((8 / 12) * 100);
-      max-width: calc((8 / 12) * 100);
+      flex: 0 0 66.66%;
+      max-width: 66.66%;
     }
-    .col-sm-9 {
-      flex: 0 0 75%;
-      max-width: 75%;
-    }
+
     .col-sm-12 {
       flex: 0 0 100%;
       max-width: 100%;

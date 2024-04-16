@@ -5,10 +5,11 @@ import IsLoading from '../../../Components/isLoading/isLoading';
 function Page1(props) {
     let { id } = useParams();
     console.log("pa", id)
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         setIsLoading(true);
+
         const timeout = setTimeout(() => {
             setIsLoading(false);
         }, 500);

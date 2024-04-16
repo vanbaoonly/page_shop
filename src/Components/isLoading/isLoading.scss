@@ -1,11 +1,12 @@
 .isLoading {
     position: fixed;
     inset: 0;
+    height: 0;
     background-color: rgba($color: #999, $alpha: 0.2);
+
     display: flex;
     align-items: center;
     justify-content: center;
-
     .load {
         display: flex;
         align-items: center;

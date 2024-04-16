@@ -1,25 +1,31 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./style.scss"
 import { Link, NavLink } from 'react-router-dom';
-import Logo from "../../Assets/logo/logo_fu.png";
-import Logout from "../../Components/Logout/Logout"
-import { AiOutlineDoubleLeft, AiOutlineLogin, AiOutlineMenu, AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
+import { AiFillYoutube, AiOutlineClose, AiOutlineFacebook, AiOutlineInstagram, AiOutlineLeftCircle, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
 import { Data } from '../../App';
 import { ROUTERS } from '../../Router/router';
-function Header(props) {
+import { Format_vnd } from "../../Components/Format_vnd/Format_vnd";
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import DivLogin from '../Div_login_out/Div_login';
+const Header = (props) => {
     const { data } = useContext(Data);
-    const [setting, Showsetting] = useState(false);
     const [sidebar, setsidebar] = useState(false);
+    const Hidden = (e) => {
+        if (e.target.tagName.toLowerCase() === 'ul') {
+            return;
+        }
+        setsidebar(!sidebar);
+    };
 
     const menu = [
         {
             name: "Trang Chủ",
             path: ROUTERS.USER.HOME
         },
-        {
-            name: "Của Hàng",
-            path: ROUTERS.USER.HOME
-        },
+        // {
+        //     name: "Của Hàng",
+        //     path: ROUTERS.USER.HOME
+        // },
         {
             name: "Sản Phẩm",
             path: ROUTERS.USER.PRODUCTS,
@@ -34,100 +40,85 @@ function Header(props) {
             path: ROUTERS.USER.CONTACT
         }
     ];
+    useEffect(() => {
+        console.log(sidebar)
+    }, [sidebar])
+
     return (
-        <div className='container'>
-            <header className='header'>
-                {/* <div className='header_left'>
-                    <img className="logo" src={Logo} alt='logo' />
-                </div>
-                <ul className='header_center'>
-                    <li>
-                        <NavLink
-                            to=""
-                            className={(Active) => Active.isActive ? "active" : ""}>
-                            Home
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/about"
-                            className={(Active) => Active.isActive ? "active" : ""}>
-                            about
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/contact"
-                            className={(Active) => Active.isActive ? "active" : ""}>
-                            contact
-                        </NavLink>
-                    </li>
-
-                    <li>
-                        <NavLink
-                            to="/product"
-                            className={(Active) => Active.isActive ? "active" : ""}>
-                            Product
-                        </NavLink>
-                    </li>
-
-                </ul>
-                <div className='header_right'>
-
-                    <div className='setting_mode' onClick={() => Showsetting(!setting)}>
-                        <span> {data.gmail}</span>
-                        <AiOutlineSetting />
-                    </div>
-                    {
-                        setting &&
-                        <ul >
-                            <li>profile</li>
-                            <li>mode</li>
-                            <li>abc</li>
-                            <li><button style={{ width: "100%", padding: "5px 0px" }}><Logout /></button></li>
+        <header className='header' >
+            <div className='container'>
+                <div className='header_top'>
+                    <div className='row'>
+                        <ul className=" header_top_left col-8">
+                            <li> <AiOutlineMail /> Demo@gmail.com</li>
+                            <li>Miễn phí giao hàng trên  {Format_vnd(9999999)} </li>
                         </ul>
-                    }
+                        <ul className="header_top_right col-2">
+                            <li>
+                                <Link to="https://www.facebook.com/" ><AiOutlineFacebook /></Link>
+                            </li>
+                            <li>
+                                <Link to="#" ><AiOutlineInstagram /></Link>
+                            </li>
+                            <li>
+                                <Link to="#" > <AiFillYoutube /></Link>
+                            </li>
+                        </ul>
+                        <div className='col-2'><DivLogin data={data} /></div>
+                    </div>
 
-                </div> */}
+                </div>
                 <div className='row'>
-                    <div className='header_left col-3 col-lg-2 col-md-10  '>
+                    <div className='header_left col-3 col-lg-2 col-md-8  col-sm-6'>
                         {/* <img className='logo' src={Logo} alt='logo' />
                          */}
                         <h1>LOGO</h1>
                     </div>
-                    <ul className='header_center col-6 col-lg-8  ' >
-                        {renderMenu(menu)}
+                    <ul className='header_center col-6 col-lg-8' >
+                        {
+                            menu.map((item, key) => (
+                                <li key={key + 1}>
+                                    <NavLink onClick={() => setsidebar(false)}
+                                        className={(Acive) => Acive.isActive ? "active" : ""} to={item.path}>{item.name}</NavLink>
+                                </li>
+                            ))
+                        }
                     </ul>
-                    <div className='header_right col-3 col-lg-2 '>
-                        <div className='tologin'> <Link to={"/login"}><AiOutlineLogin /><span>Đăng Nhập</span></Link></div>
+                    <div className='header_right col-3 col-lg-2 col-md-2 col-sm-3'>
+                        <ShoppingCart />
                     </div>
-                    <div className='header_menu col-lg-3 col-md-2 '> <span onClick={() => setsidebar(!sidebar)} > <AiOutlineMenu />
-
-                    </span></div>
+                    <div className='header_menu col-lg-3 col-md-2 col-sm-3'>
+                        <span onClick={() => setsidebar(!sidebar)} >
+                            <AiOutlineMenu />
+                        </span></div>
                 </div>
-                {
-                    sidebar &&
-                    <div className='sidebar'>
-                        <ul className={sidebar ? "show" : ""}>
-                            <div className='close' onClick={() => setsidebar(false)}> <AiOutlineDoubleLeft /></div>
-                            {renderMenu(menu)}
-                            <div className='tologin ' > <Link className='bdr-none' to={'/login'}><AiOutlineLogin /><span>Đăng Nhập</span></Link></div>
-                        </ul>
-                    </div>
-                }
+            </div>
+            {
 
-            </header>
+                <div className={`sidebar ${sidebar ? "visible" : "hidden"} `} onClick={(e) => Hidden(e)}>
+                    <ul className={""}>
+                        <div className='close' onClick={() => setsidebar(!sidebar)}>  <AiOutlineClose /></div>
+                        <li><h2>LOGO</h2></li>
+                        <li>
+                            <Link to={""}>   {data.gmail}</Link>
+                        </li>
 
-        </div>
+                        {
+                            menu.map((item, key) => (
+                                <li key={key + 1}>
+                                    <NavLink onClick={() => setsidebar(!sidebar)}
+                                        className={(Acive) => Acive.isActive ? "active" : ""} to={item.path}>{item.name}</NavLink>
+                                </li>
+                            ))
+                        }
+                        <DivLogin data={data} type={"tablet"} />
+                    </ul>
+                </div>
+            }
+        </header>
 
     );
-}
-function renderMenu(menu) {
-    return menu.map((item, key) => (
-        <li key={key + 1}>
-            <NavLink className={(Acive) => Acive.isActive ? "active" : ""} to={item.path}>{item.name}</NavLink>
-        </li>
-    ));
-}
 
+
+}
 export default Header;

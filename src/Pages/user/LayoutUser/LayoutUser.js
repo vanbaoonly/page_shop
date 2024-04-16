@@ -9,30 +9,20 @@ import { Data } from '../../../App';
 
 const LayoutUser = (props) => {
     const { data } = useContext(Data);
-
     useEffect(() => {
 
     }, []);
 
     return (
-        <>
-            <div className='LayoutUser'>
-
-                <div>
-                    <Header />
-                    <div className='container'>
-                        <Outlet />
-                        <h3>  {data.gmail}</h3>
-                        <Link to={"/admin/dashboard"}> admin </Link>
-                    </div>
-                    <Footer />
-
+        <div className='LayoutUser'>
+            <div>
+                <Header />
+                <div className='content ' >
+                    <Outlet />
                 </div>
+                <Footer />
             </div>
-        </>
-
-
-
+        </div>
     );
 }
 

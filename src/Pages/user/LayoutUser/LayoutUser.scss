@@ -1,0 +1,15 @@
+.LayoutUser {
+    .content {
+        margin-top: 116.4px;
+    }
+    @media (max-width: 992px) {
+        .content {
+            margin-top: 113.2px;
+        }
+    }
+    @media (max-width: 768px) {
+        .content {
+            margin-top: 76.4px;
+        }
+    }
+}

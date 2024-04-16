@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { AiFillFacebook, AiFillInstagram, AiFillYoutube, AiOutlineInstagram } from "react-icons/ai";
 import logo from "../../Assets/logo/logo_ic.png";
@@ -7,27 +7,42 @@ function Footer(props) {
     const handleDangKy = (e) => {
         e.preventDefault();
         if (email) {
-            alert(email)
+            alert("ip :" + ipAddress)
             setEmail("")
         } else {
             alert("null")
         }
-
-
     }
+
+    const [ipAddress, setIpAddress] = useState('');
+    useEffect(() => {
+
+        const fetchIpAddress = async () => {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                setIpAddress(data.ip);
+            } catch (error) {
+                console.error('Error fetching IP address:', error);
+            }
+        };
+
+        fetchIpAddress();
+    }, [])
     return (
-        <div className="container">
-            <footer className='footer'>
+        <footer className='footer'>
+            <div className="container">
                 <div className="row">
-                    <div className="col-3 col-md-6  col-sm-6 col-xs-12">
-                        <div className='logo'><img src={logo} alt='logo' /></div>
+                    <div className="col-4 col-md-6  col-sm-6 col-xs-12">
+                        {/* <div className='logo'><img src={logo} alt='logo' /></div> */}
+                        <div className='logo'><h3>LOGO</h3></div>
                         <ul>
                             <li>Địa chỉ: Số 123, Đường A, Thành phố HCM</li>
                             <li>Số điện thoại: 0123 456 789</li>
                             <li>Email: shop@gmail.com</li>
                         </ul>
                     </div>
-                    <div className="col-3  col-md-3 col-sm-6 col-xs-12">
+                    <div className="col-2  col-md-3 col-sm-6 col-xs-12">
                         <h4>Danh mục</h4>
                         <ul>
                             <li>Danh mục 1</li>
@@ -36,7 +51,7 @@ function Footer(props) {
                             <li>Danh mục 4</li>
                         </ul>
                     </div>
-                    <div className="col-3  col-md-3  col-sm-6 col-xs-12">
+                    <div className="col-2  col-md-3  col-sm-6 col-xs-12">
                         <h4>Chính Sách</h4>
                         <ul  >
                             <li> Hỗ trợ khách hàng </li>
@@ -44,7 +59,7 @@ function Footer(props) {
                             <li> Điều khoản dịch vụ </li>
                         </ul>
                     </div>
-                    <div className="col-3  col-md-12 col-sm-6 col-xs-12">
+                    <div className="col-4  col-md-12 col-sm-6 col-xs-12">
                         <h4>Khuyến mãi & Ưu đãi</h4>
                         <ul>
                             <li>Đăng ký nhận thông tin tại đây.</li>
@@ -67,8 +82,8 @@ function Footer(props) {
                         <h5>&copy; 2024 Tên Công ty. Bản quyền thuộc về Tên Công ty.</h5>
                     </div>
                 </div>
-            </footer >
-        </div>
+            </div>
+        </footer >
     );
 }
 

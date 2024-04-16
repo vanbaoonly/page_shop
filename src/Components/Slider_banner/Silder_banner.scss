@@ -1,0 +1,25 @@
+@use "sass:map";
+@import "/src/Styles/variables.scss";
+.slide {
+    width: 100%;
+    img {
+        width: 200px;
+        height: 500px;
+    }
+    .slick-prev::before,
+    .slick-next::before {
+        color: map.get($colors, "main");
+    }
+    .slick-dots {
+        bottom: 25px;
+    }
+    .slick-dots li button:before {
+        font-size: 15px;
+        color: #fff;
+    }
+    @media (max-width: 768px) {
+        img {
+            height: 350px;
+        }
+    }
+}

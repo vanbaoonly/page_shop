@@ -5,7 +5,9 @@ import LayoutUser from "./Pages/user/LayoutUser/LayoutUser";
 import Login from "./Components/Login/Login";
 import Page1 from "./Pages/user/Page1/Page1";
 import NotFound from "./Components/NotFound/NotFound";
-import Products from "./Pages/admin/Products/Products";
+
+import Products from "./Pages/user/Products/Products";
+
 import LayoutAdmin from "./Pages/admin/LayoutAdmin/LayoutAdmin";
 import Register from "./Components/Login/Register";
 import ForgotPass from "./Components/Login/ForgotPass";
@@ -14,6 +16,9 @@ import About from "./Pages/user/About/About";
 import Contact from "./Pages/user/Contact/Contact";
 import { createContext, useEffect, useState } from "react";
 import { ROUTERS } from "./Router/router";
+import Dashboard from "./Pages/admin/Dashboard/Dashboard";
+import Detail_product from "./Pages/user/Products/Detail_product";
+import Cart from "./Components/Cart/Cart";
 
 export const Data = createContext();
 
@@ -26,45 +31,66 @@ function App() {
   const isLogin = status ? JSON.parse(status) : false;
 
 
+  const Actions = [
+    { path: ROUTERS.ACTIONS.LOGIN, component: <Login /> },
+    { path: ROUTERS.ACTIONS.REGISTER, component: <Register /> },
+    { path: ROUTERS.ACTIONS.FORGOTPASSWPRD, component: <ForgotPass /> },
+
+  ];
+  const Users = [
+    { path: ROUTERS.USER.HOME, component: <Home /> },
+    { path: ROUTERS.USER.PRODUCTS, component: <Products /> },
+    { path: ROUTERS.USER.PRODUCTID, component: <Detail_product /> },
+    { path: ROUTERS.USER.CONTACT, component: <Contact /> },
+    { path: ROUTERS.USER.POSTS, component: <About /> },
+    { path: ROUTERS.USER.CART, component: <Cart /> },
+
+  ];
+
+  const Admin = [
+    { path: ROUTERS.ADMIN.DASHBOARD, component: <Dashboard /> },
+    { path: ROUTERS.ADMIN.PRODUCTS, component: <Page1 /> },
+
+  ];
   useEffect(() => {
     try {
-      console.log("data:", data)
-      if (!isLogin) {
-        Nav(ROUTERS.ACTIONS.LOGIN)
+      // console.log("data:", data)
 
-      } else {
-        return;
+      if (!isLogin) {
+        return Nav(ROUTERS.ACTIONS.LOGIN)
+
       }
+      return;
     } catch (er) {
       alert("lỗi:", er)
     }
-  }, [isLogin, data, data.type]);
+  }, []);
 
   return (
     <Data.Provider value={{ data }}>
       <Routes>
-        {/* <Route path={ROUTERS.ACTIONS.LOGIN} element={<Login />} />
+        <Route path={ROUTERS.ACTIONS.LOGIN} element={<Login />} />
         <Route path={ROUTERS.ACTIONS.REGISTER} element={<Register />} />
-        <Route path={ROUTERS.ACTIONS.FORGOTPASSWPRD} element={<ForgotPass />} /> */}
+        <Route path={ROUTERS.ACTIONS.FORGOTPASSWPRD} element={<ForgotPass />} />
 
-        {/* <Route path={ROUTERS.USER.HOME} element={!isLogin ? <Navigate to={ROUTERS.ACTIONS.FORGOTPASSWPRD} /> : <LayoutUser />}> */}
         <Route path={ROUTERS.USER.HOME} element={<LayoutUser />}>
-          <Route path="" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="product" element={<Page1 />} />
-          <Route path="product/:id" element={<Page1 />} />
+          {
+            Users.map((item, key) => (
+              <Route key={key + 1} path={item.path} element={item.component} />
+            ))
+          }
         </Route>
 
-
-        {/* <Route path={ROUTERS.ADMIN.HOME} element={!isLogin ? <Navigate to={ROUTERS.ACTIONS.LOGIN} /> : <LayoutAdmin />} > */}
         <Route path={ROUTERS.ADMIN.HOME} element={<LayoutAdmin />} >
-          <Route path="products" element={<Products />} />
-          <Route path="products/:id" element={<Page1 />} />
+          {
+            Admin.map((item, key) => (
+              <Route key={key + 1} path={item.path} element={item.component} />
+            ))
+          }
         </Route>
-
         <Route path="*" element={<NotFound />} />
       </Routes>
+
       <ToastContainer
         position="top-right"
         autoClose={1000}
@@ -77,10 +103,7 @@ function App() {
         pauseOnHover
         theme="light"
       >
-
       </ToastContainer>
-
-
     </Data.Provider >
   );
 }

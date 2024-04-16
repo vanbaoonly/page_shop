@@ -2,12 +2,18 @@ export const ROUTERS = {
 
     USER: {
         HOME: '/',
-        PRODUCTS: '/product',
-        POSTS: "/about",
-        CONTACT: "/contact"
+        PRODUCTS: 'product',
+        PRODUCTID: 'product/:id',
+        POSTS: "about",
+        CONTACT: "contact",
+        CART: "cart",
+
     },
     ADMIN: {
-        HOME: '/admin/dashboard',
+        HOME: '/admin',
+        DASHBOARD: "dashboard",
+        PRODUCTS: 'product',
+
     },
     ACTIONS: {
         LOGIN: "/login",

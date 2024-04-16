@@ -1,0 +1,103 @@
+@use "sass:map";
+@import "/src/Styles/variables";
+.wrapper_login {
+    .div_logout .out,
+    .div_login a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        color: map.get($colors, "drak");
+        padding: 5px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        &:hover {
+            color: map.get($colors, "white");
+            background-color: map.get($colors, "main");
+        }
+        svg,
+        span {
+            font-size: 14px;
+        }
+    }
+    .div_logout:hover ul {
+        display: block;
+    }
+    .out1 {
+        position: relative;
+        padding: 5px;
+        float: right;
+
+        .out1_span {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        ul {
+            display: none;
+            position: absolute;
+            top: 150%;
+            right: 0;
+            width: 150px;
+            box-shadow: 0 2px 5px #000;
+            z-index: 1;
+            li {
+                font-size: 16px;
+                list-style: none;
+                padding: 10px 10px;
+                color: #333;
+                background-color: #fff;
+                width: 100%;
+                cursor: pointer;
+                &:hover {
+                    color: map.get($colors, "main");
+                }
+            }
+            &::before {
+                content: "";
+                position: absolute;
+                top: -10px;
+                right: 50px;
+                height: 20px;
+                width: 20px;
+                box-shadow: 0 0px 5px #000;
+                transform: rotate(45deg);
+                background-color: #fff;
+                z-index: -1;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                top: -20px;
+                right: 0;
+                left: 0;
+                height: 20px;
+                background-color: transparent;
+            }
+        }
+        &:hover {
+            color: map.get($colors, "main");
+            // background-color: map.get($colors, "main");
+        }
+    }
+
+    @media (max-width: 768px) {
+        .div_login a,
+        .div_logout .out {
+            width: 100%;
+            padding: 10px 0px !important;
+            color: map.get($colors, "white");
+            &:hover {
+                color: map.get($colors, "white");
+                background-color: map.get($colors, "bg-hover");
+            }
+            svg,
+            span {
+                font-size: 18px;
+            }
+        }
+    }
+}
