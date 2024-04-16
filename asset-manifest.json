@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.css": "/page_shop/static/css/main.68945373.css",
-    "main.js": "/page_shop/static/js/main.577558d1.js",
+    "main.css": "/page_shop/static/css/main.1fdd260d.css",
+    "main.js": "/page_shop/static/js/main.38020dc2.js",
     "static/media/product3.webp": "/page_shop/static/media/product3.f5f01bd7d2a710e1e682.webp",
     "static/media/product2.webp": "/page_shop/static/media/product2.5258a1a3e9a760f2cac8.webp",
     "static/media/product1.webp": "/page_shop/static/media/product1.e8766c0838b4dc8e8228.webp",
     "static/media/product4.webp": "/page_shop/static/media/product4.77959cee0970e45c6ded.webp",
     "static/media/banner2.jpeg": "/page_shop/static/media/banner2.cd0160424c035ab3ca08.jpeg",
     "static/media/banner1.jpg": "/page_shop/static/media/banner1.77175f6f71ecee1fc818.jpg",
-    "static/media/logo_fu.png": "/page_shop/static/media/logo_fu.fd160ff192b2fc9422ec.png",
     "static/media/banner4.jpg": "/page_shop/static/media/banner4.ce7d8e6dd5b6edbe2a23.jpg",
     "static/media/logo_ic.png": "/page_shop/static/media/logo_ic.01338f58ace1b0e87b99.png",
     "static/media/slick.svg": "/page_shop/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -16,11 +15,11 @@
     "static/media/slick.ttf": "/page_shop/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/page_shop/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/page_shop/index.html",
-    "main.68945373.css.map": "/page_shop/static/css/main.68945373.css.map",
-    "main.577558d1.js.map": "/page_shop/static/js/main.577558d1.js.map"
+    "main.1fdd260d.css.map": "/page_shop/static/css/main.1fdd260d.css.map",
+    "main.38020dc2.js.map": "/page_shop/static/js/main.38020dc2.js.map"
   },
   "entrypoints": [
-    "static/css/main.68945373.css",
-    "static/js/main.577558d1.js"
+    "static/css/main.1fdd260d.css",
+    "static/js/main.38020dc2.js"
   ]
 }
