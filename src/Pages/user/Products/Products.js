@@ -4,17 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import ImageProduct from "../../../Assets/Products/product1.webp";
 import "./Products.scss";
 import { Format_vnd } from '../../../Components/Format_vnd/Format_vnd';
+import { useFetch } from '../../../Components/CustomFecth/useFetch';
 
 const Products = () => {
     const Navigate = useNavigate();
     const [TextSearch, setTextSearch] = useState("");
-    const products = [
-        { id: "1", name: "name", image: ImageProduct, price: "200", total: "99" },
-        { id: "2", name: "name", image: ImageProduct, price: "200", total: "99" },
-        { id: "3", name: "name", image: ImageProduct, price: "200", total: "99" },
-        { id: "4", name: "name", image: ImageProduct, price: "200", total: "99" },
-        { id: "5", name: "name", image: ImageProduct, price: "200", total: "99" },
-    ]
+    const [key, setKey] = useState("");
+    const { data: products, Loading, ErrorMes } = useFetch(`http://localhost:1234/api/products/${key}`);
+
     const DelTextSearch = () => {
         setTextSearch("");
     }
@@ -30,7 +27,8 @@ const Products = () => {
     }
     useEffect(() => {
         TextSearch.length > 0 ? seticonSearch(true) : seticonSearch(false);
-    }, [TextSearch])
+        console.log("keyt", key)
+    }, [TextSearch, key])
     return (
         <div className='products'>
             <div className='container product_top'>
@@ -44,15 +42,15 @@ const Products = () => {
                             {
                                 showMenu &&
                                 <ul className={`menu_list ${showMenu ? "" : "hidden"}`}>
-                                    <li><Link to="#">Sản phẩm 1</Link></li>
-                                    <li><Link to="#">Sản phẩm 2</Link></li>
-                                    <li><Link to="#">Sản phẩm 3</Link></li>
-                                    <li><Link to="#">Sản phẩm 4</Link></li>
-                                    <li><Link to="#">Sản phẩm 5</Link></li>
+                                    <li onClick={() => setKey("")}> Tất cả Sản phẩm </li>
+                                    <li onClick={() => setKey("nam")}> Áo Nam </li>
+                                    <li onClick={() => setKey("nu")}> Áo Nữ </li>
+                                    <li onClick={() => setKey("trecon")}> Trẻ Con </li>
+                                    <li>  Sản phẩm 5 </li>
                                 </ul>
                             }
                         </div >
-                    </div>
+                    </div >
                     <div className="col-8 col-md-12  ">
                         <form className="from_search" onSubmit={(e) => handleSunmit(e)} >
                             <div className="input">
@@ -65,13 +63,13 @@ const Products = () => {
                             <button type="submit">Tìm kiếm</button>
                         </form>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
             <div className='product'>
                 <div className='container'>
                     <div className='grid'>
                         {
-                            products.map((item) => (
+                            products?.map((item) => (
                                 <div className='grid_item' key={item.id} onClick={() => Detail_product(item.id)} >
                                     <img className='img' src={item.image} alt={item.name} />
                                     <div className='name'>{item.name}</div>
@@ -92,7 +90,7 @@ const Products = () => {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 };
 

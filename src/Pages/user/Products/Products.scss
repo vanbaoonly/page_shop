@@ -26,19 +26,18 @@
                 z-index: 1;
                 width: 100%;
                 height: auto;
-                background-color: red;
+
                 li {
                     list-style: none;
-                    a {
-                        display: block;
-                        font-size: 16px;
-                        padding: 10px 0 10px 50px;
-                        text-decoration: none;
-                        color: map.get($colors, "drak");
-                        background-color: #fff;
-                        &:hover {
-                            color: map.get($colors, "main");
-                        }
+                    cursor: pointer;
+                    display: block;
+                    font-size: 16px;
+                    padding: 10px 0 10px 50px;
+                    text-decoration: none;
+                    color: map.get($colors, "drak");
+                    background-color: #fff;
+                    &:hover {
+                        color: map.get($colors, "main");
                     }
                 }
             }

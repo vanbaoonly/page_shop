@@ -7,6 +7,8 @@ export const ROUTERS = {
         POSTS: "about",
         CONTACT: "contact",
         CART: "cart",
+        PROFILE: "profile.me",
+        FEEDBACK: "feedback"
 
     },
     ADMIN: {

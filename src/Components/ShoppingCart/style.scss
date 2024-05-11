@@ -1,3 +1,6 @@
+@use "sass:map";
+@import "/src/Styles/variables";
+
 .wrapper_shoppingcart {
     .shoppingcart {
         position: relative;
@@ -7,18 +10,19 @@
         svg {
             font-size: 30px;
         }
-        span {
+        &::before {
+            content: attr(data-counter);
             position: absolute;
-            top: -15px;
-            right: -20px;
-            font-size: 14px;
-            min-width: 20px;
-            height: 20px;
+            top: -5px;
+            right: -10px;
             line-height: 20px;
+            width: 20px;
+            height: 20px;
             text-align: center;
-            border-radius: 50%;
+            font-size: 12px;
             color: #fff;
             background-color: red;
+            border-radius: 50%;
         }
     }
 }

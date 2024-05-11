@@ -7,6 +7,7 @@ import axios from "axios";
 import ChangeTitle from "../ChangeTitle/ChangeTitle";
 import IsLoading from "../isLoading/isLoading";
 import { ROUTERS } from "../../Router/router";
+import { toast } from "react-toastify";
 
 const Login = (props) => {
     let Navigate = useNavigate();
@@ -18,103 +19,41 @@ const Login = (props) => {
         name: name,
         password: password,
     }
-    const account =
-        [
-            {
-                type: "admin",
-                name: "a",
-                password: "1",
-                gmail: "admin@gmail.com",
-                address: "HCM",
-                phone: "0123456789",
-
-            }, {
-                type: "user",
-                name: "u1",
-                password: "2",
-                gmail: "user1@gmail.com",
-                address: "HCM",
-                phone: "0123456789",
-
-            },
-            {
-                type: "user",
-                name: "u2",
-                password: "2",
-                gmail: "user2@gmail.com",
-                address: "HCM",
-                phone: "0123456789",
-
-            }
-        ]
-
-    // tạo key người dùng 
-    function getUserKey(user_key) {
-        return user_key + (Math.floor(Math.random() * 99999) + 100000);
-    }
 
     const handelLogin = async (e) => {
         e.preventDefault();
+        const { name, password } = getVal;
+        if (name.length === 0 || password.length === 0) {
+            toast.error('Acount or Password empty')
+        }
         try {
-            if (name.length > 0 && password.length > 0) {
-                let find_ac = account.find((ac) => ac.name.toLowerCase() === name.toLowerCase() && ac.password.toLowerCase() === password.toLowerCase());
-                if (find_ac) {
-                    if (find_ac.type === "admin") {
-                        Navigate("/admin/dashboard")
-                        localStorage.setItem("status_login", JSON.stringify([true, find_ac.type]));
-
-                    } else {
-                        Navigate("/")
-                        localStorage.setItem("status_login", JSON.stringify([true, find_ac.type]));
-                    }
-                    // props.setdata(find_ac);
-                    localStorage.setItem("data", JSON.stringify(find_ac))
-
-
-                } else {
-                    localStorage.setItem("status_login", JSON.stringify(false));
-                    alert("account or password in correct.")
+            let res_login = await axios.post("http://localhost:1234/api/login", getVal);
+            let data = res_login.data;
+            if (data.login) {
+                if (data.data.type === "admin") {
+                    Navigate('/admin/')
                 }
-                // let res_login = await axios.post("http://192.168.10.1:1234/api/login", getVal);
-                // let data = res_login.data;
-                // if (data.login) {
-                //     if (data.data.type === "admin") {
-                //         Navigate("/admin/dashboard");
-                //         localStorage.setItem("status_login", JSON.stringify([data.login, data.data.type]));
-                //     }
-                //     if (data.data.type === "user") {
-                //         Navigate("/user");
-                //         localStorage.setItem("status_login", JSON.stringify([data.login, data.data.type]));
-                //     }
-                //     props.setdata(data);
-                // } else {
-                //     localStorage.setItem("status_login", JSON.stringify(data.login));
-                //     alert(data.data)
-                // }
+                if (data.data.type === "user") {
+                    Navigate('/')
+                    toast.success('Welcom to Store,' + data.data.name)
+                }
+                localStorage.setItem("status_login", JSON.stringify(data.login))
+                localStorage.setItem("data_user", JSON.stringify(data.data))
             } else {
-                alert('Acount or Password empty')
+                toast.error(data.data)
             }
 
         } catch (er) {
-            alert(er)
+            toast.error("loi")
         }
     }
 
-    const status_login = localStorage.getItem("status_login");
-    const Check_login = status_login ? JSON.parse(status_login) : false;
     useEffect(() => {
         setIsLoading(true);
         const timeout = setTimeout(() => {
             setIsLoading(false);
         }, 500);
-        if (Check_login) {
-            if (Check_login[1] === "admin") {
-                console.log("check", Check_login[1])
-                Navigate('/admin/dashboard')
-            } else {
-                Navigate('/')
-            }
-        }
+
         return () => clearTimeout(timeout);
     }, []);
     return (
@@ -131,6 +70,7 @@ const Login = (props) => {
                                 <label>Acount:</label>
                                 <input type='text'
                                     name="acount"
+                                    value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     placeholder="Enter Acount.."
                                     autoFocus={true}
@@ -140,6 +80,7 @@ const Login = (props) => {
                                 <label>Password:</label>
                                 <input type={showPass ? "text" : "password"}
                                     name="password"
+                                    value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="Enter Password..."
                                     autoComplete="current-password"

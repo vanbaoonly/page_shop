@@ -12,7 +12,7 @@ const DivLogin = ({ data, type }) => {
     let Navigate = useNavigate();
     const Logoutt = () => {
         localStorage.removeItem("status_login");
-        localStorage.removeItem("data");
+        localStorage.removeItem("data_user");
         Navigate("/login");
     }
 
@@ -27,11 +27,11 @@ const DivLogin = ({ data, type }) => {
                             <div className='out1'>
                                 <span className='out1_span'>
                                     <AiOutlineLogout />
-                                    <span> {data.gmail}</span>
+                                    <span> {data.fullname}</span>
                                 </span>
                                 <ul >
-                                    <li>Tài khoản của tôi</li>
-                                    <li>Hỗ trợ</li>
+                                    <li   ><Link to={"profile.me"}>Tài khoản của tôi</Link></li>
+                                    <li  ><Link to={"feedback"}>Hỗ trợ</Link></li>
                                     <li onClick={() => Logoutt()}>Đăng xuất</li>
                                 </ul>
                             </div>

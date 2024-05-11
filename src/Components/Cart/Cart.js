@@ -8,9 +8,7 @@ const Cart = () => {
     const products = [
         { id: "1", name: "name", image: Image, descrition: "áo polo xịn sò", price: "200", quantity: "09" },
         { id: "2", name: "name", image: Image, descrition: "áo polo xịn sò", price: "200", quantity: "99" },
-        { id: "3", name: "name", image: Image, descrition: "áo polo xịn sò", price: "200", quantity: "99" },
-        { id: "4", name: "name", image: Image, descrition: "áo polo xịn sò", price: "200", quantity: "99" },
-        { id: "5", name: "name", image: Image, descrition: "áo polo xịn sò", price: "200", quantity: "99" },
+
     ]
     const [quantity, setQuantity] = useState(0);
     const handelSet = (value, id_pro) => {

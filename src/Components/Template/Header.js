@@ -2,13 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import "./style.scss"
 import { Link, NavLink } from 'react-router-dom';
 import { AiFillYoutube, AiOutlineClose, AiOutlineFacebook, AiOutlineInstagram, AiOutlineLeftCircle, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
-import { Data } from '../../App';
 import { ROUTERS } from '../../Router/router';
 import { Format_vnd } from "../../Components/Format_vnd/Format_vnd";
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import DivLogin from '../Div_login_out/Div_login';
+
+import { Data_User } from '../../Pages/user/LayoutUser/LayoutUser';
+
 const Header = (props) => {
-    const { data } = useContext(Data);
+    const { data } = useContext(Data_User);
     const [sidebar, setsidebar] = useState(false);
     const Hidden = (e) => {
         if (e.target.tagName.toLowerCase() === 'ul') {
@@ -41,8 +43,8 @@ const Header = (props) => {
         }
     ];
     useEffect(() => {
-        console.log(sidebar)
-    }, [sidebar])
+
+    }, [data])
 
     return (
         <header className='header' >
@@ -100,7 +102,8 @@ const Header = (props) => {
                         <div className='close' onClick={() => setsidebar(!sidebar)}>  <AiOutlineClose /></div>
                         <li><h2>LOGO</h2></li>
                         <li>
-                            <Link to={""}>   {data.gmail}</Link>
+                            <Link to={"#"}>   {data.fullname}</Link>
+
                         </li>
 
                         {

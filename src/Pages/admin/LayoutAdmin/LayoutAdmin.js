@@ -1,72 +1,67 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import "./LayoutAdmin.scss";
-import Footer from '../../../Components/Template/Footer';
+
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import ChangeTitle from '../../../Components/ChangeTitle/ChangeTitle';
 import IsLoading from '../../../Components/isLoading/isLoading';
-import { Data } from '../../../App';
-import { toast } from 'react-toastify';
+import { useFetch } from '../../../Components/CustomFecth/useFetch';
+
+
+export const Data_Products = createContext();
 
 const LayoutAdmin = (props) => {
     const Navigate = useNavigate();
-    const { data } = useContext(Data);
+
     const [isLoading, setIsLoading] = useState(false);
     const Logoutt = () => {
         localStorage.removeItem("status_login");
-        localStorage.removeItem("data");
+        localStorage.removeItem("data_user");
         Navigate("/login");
     }
 
-    useEffect(() => {
-        setIsLoading(true);
-        const timeout = setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
-        console.log("data admin1", data)
-        if (data.type === "admin") {
-            return;
-        } else {
-            toast.warning("khong the truy cap")
-            return Navigate("/")
-        }
+    const { data: data, Loading, ErrorMes } = useFetch(`http://localhost:1234/api/user/admin`);
 
-        return () => clearTimeout(timeout);
-    }, [data.type, data]);
+
+    useEffect(() => {
+        console.log("data >>", data)
+    }, [data])
+
 
     return (
         <>
-            {isLoading ?
+            {Loading ?
                 <IsLoading />
                 :
-                <div className='LayoutAdmin'>
-                    <ChangeTitle Title="Admin" />
-                    <div className='container'>
-                        <nav>
-                            <NavLink
-                                to="/admin"
-                                className={({ isActive }) => isActive ? "active" : ""}>Home admin</NavLink>
-                            <NavLink
-                                to="/admin/dashboard "
-                                className={({ isActive }) => isActive ? "active" : ""}>Dashboard</NavLink>
-                            <NavLink
-                                to="/admin/product "
-                                className={({ isActive }) => isActive ? "active" : ""}>Product</NavLink>
+                <Data_Products.Provider value={{}}>
+                    <div className='LayoutAdmin'>
+                        <ChangeTitle Title="Admin" />
+                        <div className='container'>
 
-                            <button onClick={() => Logoutt()}>Logout</button>
+                            <nav>
+                                <NavLink
+                                    to="/admin"
+                                    className={({ isActive }) => isActive ? "active" : ""}>Home admin</NavLink>
+                                <NavLink
+                                    to="/admin/dashboard "
+                                    className={({ isActive }) => isActive ? "active" : ""}>Dashboard</NavLink>
+                                <NavLink
+                                    to="/admin/product "
+                                    className={({ isActive }) => isActive ? "active" : ""}>Product</NavLink>
 
-                        </nav>
+                                <button onClick={() => Logoutt()}>Logout</button>
+                            </nav>
+                        </div>
+                        <div className='containet'>
+                            <Outlet />
+                            <h1> {data.fullname} </h1>
+                            <NavLink
+                                to="/"
+                            >Home user</NavLink>
+
+                        </div>
+
                     </div>
-                    <div className='container'>
-                        <Outlet />
-                        <NavLink
-                            to="/"
-                        >Home user</NavLink>
-
-                        <h3>  {data.gmail}</h3>
-                    </div>
-
-                    <Footer />
-                </div>
+                </Data_Products.Provider>
             }
 
         </>
